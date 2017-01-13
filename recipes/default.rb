@@ -57,7 +57,7 @@ if fqdn
         if node['hostname_cookbook']['hostsfile_ip_interface']
     end
 
-    execute "hostname #{fqdn}" do
+    execute "hostnames #{fqdn}" do
       only_if { node['fqdn'] != fqdn }
       notifies :reload, 'ohai[reload_hostname]', :immediately
     end
@@ -93,7 +93,7 @@ if fqdn
         notifies :reload, 'ohai[reload_hostname]', :immediately
         notifies :restart, 'service[network]', :delayed
       end
-      execute "hostname #{hostname}" do
+      execute "hostnames #{hostname}" do
         only_if { node['hostname'] != hostname }
         notifies :reload, 'ohai[reload_hostname]', :immediately
       end
@@ -105,7 +105,7 @@ if fqdn
       notifies :reload, 'ohai[reload_hostname]', :immediately
     end
 
-    execute "hostname #{hostname}" do
+    execute "hostnames #{hostname}" do
       only_if { node['hostname'] != hostname }
       notifies :reload, 'ohai[reload_hostname]', :immediately
     end
